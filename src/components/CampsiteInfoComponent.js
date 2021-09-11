@@ -58,7 +58,7 @@ class CommentForm extends React.Component{
                         <div className="form-group" >
                         <Label htmlFor="rating">Rating</Label>
                         <Control.select model=".rating" id="rating" name="rating" className="form-control">
-                            <option>1</option>
+                            <option selected>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
