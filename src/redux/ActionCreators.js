@@ -184,18 +184,22 @@ export const addPartners = partners => ({
     payload: partners
 });
 
-export function postFeedback(postFeedback) {
-    fetch(baseUrl + 'postFeedback', {
+export const postFeedback = (postFeedback) => {
+    return fetch(baseUrl + 'postFeedback', {
       method: 'POST',
       body: JSON.stringify(postFeedback),
       headers: {
           "Content-Type": "application/json"
       }
     })
-    .then(function(response) {
-      return response.json();
+    .then(response => {
+        if (response.ok) {
+            return response + alert("Thank you for your feedback");
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
     })
-    .then(function(data) {
-      return alert("Thank you for your feedback", data);
-    });
+    .then(response => response.json())
 }
