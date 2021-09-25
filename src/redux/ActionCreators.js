@@ -184,7 +184,7 @@ export const addPartners = partners => ({
     payload: partners
 });
 
-export const postFeedback = (postFeedback) => {
+export const postFeedback = (postFeedback) => dispatch => {
     return fetch(baseUrl + 'postFeedback', {
       method: 'POST',
       body: JSON.stringify(postFeedback),
@@ -202,4 +202,6 @@ export const postFeedback = (postFeedback) => {
         }
     })
     .then(response => response.json())
+    .then(postFeedback => dispatch(postFeedback(postFeedback)))
+    .catch(error => (error.message));
 }
